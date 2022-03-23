@@ -332,7 +332,9 @@ const DWContainer = () => {
             <div className="dw">
               <button
                 disabled={
-                  info !== undefined || status !== WalletStatus.WALLET_CONNECTED
+                  info !== undefined ||
+                  status !== WalletStatus.WALLET_CONNECTED ||
+                  balance === 0
                 }
                 onClick={() => openModal(Type.DEPOSIT)}
                 className="trigger"
