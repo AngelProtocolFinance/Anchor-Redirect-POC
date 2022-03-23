@@ -1,5 +1,5 @@
 import { MsgExecuteContract, MsgSend, MsgWithdrawDelegatorReward } from '@terra-money/terra.js'
-import { Modal, ModalContent } from "@chakra-ui/react";
+import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
 import { UserDenied, CreateTxFailed, TxFailed, 
     TxUnspecifiedError, Timeout, TxResult, 
     useLCDClient, useConnectedWallet 
@@ -160,6 +160,7 @@ const TxModal = ({ msgs }: { msgs: TinyAngelMsgs }): JSX.Element => {
 
     return (
         <Modal isCentered isOpen={open} onClose={() => null} size="sm">
+            <ModalOverlay/>
             <ModalContent>
                 { status === TxStep.Waiting && 
                 <Dialog img="images/png/angelwing_bl.png" title="Waiting on Wallet..." type={TxStep.Waiting}/> 

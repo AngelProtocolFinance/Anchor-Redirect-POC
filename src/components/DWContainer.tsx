@@ -103,10 +103,10 @@ const DWContainer = () => {
 
                 const promise = [];
 
-                promise.push(getYield(+blockHeight + 14400));
-                promise.push(getYield(+blockHeight + (14400 * 7)));
-                promise.push(getYield(+blockHeight + (14400 * 30)));
-                promise.push(getYield(+blockHeight + (14400 * 365)));
+                promise.push(getYield(parseInt(blockHeight) + 14400 * 10));
+                promise.push(getYield(+blockHeight + (14400 * 7) * 10));
+                promise.push(getYield(+blockHeight + (14400 * 30) * 10));
+                promise.push(getYield(+blockHeight + (14400 * 365) * 10));
 
                 const [
                     {
@@ -131,15 +131,15 @@ const DWContainer = () => {
                     },
                 ] = await Promise.all(promise);
 
-                const pureDayYield = (+ust.amount * dayRate) - (+ust.amount * epochRate.result.exchange_rate);
-                const pureWeekYield = (+ust.amount * weekRate) - (+ust.amount * epochRate.result.exchange_rate);
-                const pureMonthYield = (+ust.amount * monthRate) - (+ust.amount * epochRate.result.exchange_rate);
-                const pureYearYield = (+ust.amount * yearRate) - (+ust.amount * epochRate.result.exchange_rate);
+                const pureDayYield = (+deposit_info.aust_amount * +dayRate) - +deposit_info.ust_amount;
+                const pureWeekYield = (+deposit_info.aust_amount * +weekRate) - +deposit_info.ust_amount;
+                const pureMonthYield = (+deposit_info.aust_amount * +monthRate) - +deposit_info.ust_amount;
+                const pureYearYield = (+deposit_info.aust_amount * +yearRate) - +deposit_info.ust_amount;
 
-                const donDayYield = pureDayYield * (+info.give_percentage / 100)
-                const donWeekYield = pureWeekYield * (+info.give_percentage / 100)
-                const donMonthYield = pureMonthYield * (+info.give_percentage / 100)
-                const donYearYield = pureYearYield * (+info.give_percentage / 100)
+                const donDayYield = pureDayYield * (+deposit_info.give_percentage / 100)
+                const donWeekYield = pureWeekYield * (+deposit_info.give_percentage / 100)
+                const donMonthYield = pureMonthYield * (+deposit_info.give_percentage / 100)
+                const donYearYield = pureYearYield * (+deposit_info.give_percentage / 100)
 
                 setEarn({
                     day: pureDayYield-donDayYield,
@@ -311,8 +311,32 @@ const DWContainer = () => {
                     </Stack>
                 </div>
             </div>
-            <div style={earn_percentage}>
-                hello
+            <div className="percentages">
+                <Stack direction="column" gap="25px" width="100%">
+                    <Stack direction="column" gap="10px">
+                        <Text fontSize="0.8rem" fontWeight="700" textTransform="uppercase">YIELD PERCENTAGE</Text>
+                        <Stack direction="row" gap="10px">
+                            <Grid placeItems="center">
+                                <CircularProgress size="75px" value={(100 - (+info?.give_percentage || 0))} color='green.400'>
+                                  <CircularProgressLabel>{(100 - (+info?.give_percentage || 0))}%</CircularProgressLabel>
+                                </CircularProgress>
+                            </Grid>
+                            <Text fontSize="3rem" fontWeight="700">{(19.24 - (19.24 * (+info?.give_percentage || 0) / 100)).toFixed(2)}%</Text>
+                        </Stack>
+                    </Stack>
+                    <Stack direction="column" gap="10px">
+                        <Text fontSize="0.8rem" fontWeight="700" textTransform="uppercase">DONATE PERCENTAGE</Text>
+                        <Stack direction="row" gap="10px">
+                            <Grid placeItems="center">
+                                <CircularProgress size="75px" value={+info?.give_percentage || 0} color='green.400'>
+                                  <CircularProgressLabel>{+info?.give_percentage || 0}%</CircularProgressLabel>
+                                </CircularProgress>
+                            </Grid>
+                            <Text fontSize="3rem" fontWeight="700">{(19.24 * (+info?.give_percentage || 0) / 100).toFixed(2)}%</Text>
+                        </Stack>
+                    </Stack>
+                </Stack>
+                <Box width="100%" height="100%" background="lightgrey"></Box>
             </div>
         </section>
         </>
