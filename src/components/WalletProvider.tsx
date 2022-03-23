@@ -4,12 +4,12 @@ import { sliced } from "functions/sliceAddress";
 import useAddress from "hooks/useAddress";
 
 const button = {
-    padding: '15px 30px',
+    padding: '10px 30px',
     height: 'fit-content',
     borderRadius: '10px',
     fontSize: '1rem',
-    background: "#2d2d2d",
-    color: "white",
+    background: "white",
+    color: "#2d2d2d",
     fontFamily: "Roboto",
 }
 

@@ -7,7 +7,8 @@ const nav = {
     display: "grid",
     placeItems: "center",
     marginBottom: '75px',
-    border: '1px solid black'
+    background: '#2d2d2d',
+    color: 'white'
 }
 
 const container = {
