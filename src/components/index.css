@@ -1,0 +1,54 @@
+.earn_container {
+    padding: 50px;
+    width: 100%;
+    min-height: 300px;
+    border-radius: 15px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dw {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.trigger {
+    background-color: #2d2d2d;
+    color: white;
+    border: 2px solid #2d2d2d;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.w {
+    color: #2d2d2d;
+    background-color: white;
+    border: 2px solid #2d2d2d;
+}
+
+.profit_container {
+    padding: 50px;
+    width: 100%;
+    min-height: 300px;
+    border-radius: 15px;
+    background: white;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+}
+
+.compound {
+    padding: 15px 15px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
