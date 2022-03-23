@@ -3,11 +3,12 @@ import Nav from "components/Nav"
 
 export default function Main () {
     const baseStyle = {
-        width: '100%',
-        background: "rgb(243, 243, 243)",
-        display: 'grid',
-        placeItems: 'center'
-    }
+      width: "100%",
+      background: "rgb(243, 243, 243)",
+      display: "grid",
+      placeItems: "center",
+      marginBottom: "75px",
+    };
 
     return (
         <main style={baseStyle}>
