@@ -1,5 +1,5 @@
 import { Coin, MsgExecuteContract } from "@terra-money/terra.js";
-import { useWallet, WalletStatus } from "@terra-money/wallet-provider";
+import { useWallet } from "@terra-money/wallet-provider";
 import useAddress from "hooks/useAddress";
 import { useState } from "react";
 import { useSetState } from "react-use";
@@ -7,10 +7,10 @@ import TxModal from "../Modal/TxModal";
 
 import "../index.css";
 import { REDIR_CONTRACT } from "constants/constants";
-import { toTerraAmount } from "functions/toXAmount";
 import DWModal from "./DWModal";
 import Percentages from "./Percentages";
 import Profit from "./Profit";
+import Earn from "./Earn";
 
 export enum Type {
   DEPOSIT = 0,
@@ -93,40 +93,13 @@ const DWContainer = () => {
       />
       <section className="dw_container">
         <div className="earn_style">
-          <div className="earn_container">
-            <div>
-              <h1 className="title">TOTAL DEPOSIT</h1>
-              <h1 className="ust">
-                <span className="amt">
-                  {(
-                    toTerraAmount(parseInt(info?.aust_amount ?? 0)) *
-                    exchangeRate
-                  ).toFixed(2)}
-                </span>{" "}
-                UST
-              </h1>
-            </div>
-            <div className="dw">
-              <button
-                disabled={
-                  info !== undefined ||
-                  status !== WalletStatus.WALLET_CONNECTED ||
-                  balance === 0
-                }
-                onClick={() => openModal(Type.DEPOSIT)}
-                className="trigger"
-              >
-                Deposit
-              </button>
-              <button
-                disabled={!info}
-                onClick={() => openModal(Type.WITHDRAW)}
-                className="trigger w"
-              >
-                Withdraw
-              </button>
-            </div>
-          </div>
+          <Earn
+            info={info}
+            openModal={openModal}
+            exchangeRate={exchangeRate}
+            balance={balance}
+            status={status}
+          />
           <Profit
             setBalance={setBalance}
             setAmount={setAmount}
