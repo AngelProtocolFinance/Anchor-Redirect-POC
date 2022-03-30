@@ -1,0 +1,1 @@
+export const toTerraAmount = (amount: number | string) => +amount / 1000000;

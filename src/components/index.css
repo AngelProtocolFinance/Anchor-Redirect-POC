@@ -36,6 +36,23 @@
     align-items: center;
 }
 
+.title {
+    letter-spacing: 1px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Roboto";
+}
+
+.ust {
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+.amt {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
 .trigger {
     background-color: #2d2d2d;
     color: white;

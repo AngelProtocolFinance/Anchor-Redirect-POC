@@ -30,26 +30,8 @@ import { useSetState } from "react-use";
 import TxModal from "../Modal/TxModal";
 
 import "../index.css";
-
-const title = {
-  letterSpacing: "1px",
-  fontSize: "1rem",
-  fontWeight: "700",
-  fontFamily: "Roboto",
-};
-
-const ust = {
-  fontSize: "2.5rem",
-  fontWeight: "400",
-};
-
-const amt = {
-  fontSize: "2.5rem",
-  fontWeight: "500",
-};
-
-const contract = "terra1tmmwv5h6jwgqvy4rxexpjdt6qrhkuzact59zt2";
-const toTerraAmount = (amount: number | string) => +amount / 1000000;
+import { REDIR_CONTRACT } from "constants/constants";
+import { toTerraAmount } from "functions/toXAmount";
 
 enum Type {
   DEPOSIT = 0,
@@ -84,7 +66,7 @@ const DWContainer = () => {
       (async () => {
         const deposit_info = await getDepositInfoURL(
           lcd,
-          contract,
+          REDIR_CONTRACT,
           user_address
         );
         const [coins] = await lcd.bank.balance(user_address);
@@ -180,7 +162,7 @@ const DWContainer = () => {
         ? [
             new MsgExecuteContract(
               user_address,
-              contract,
+              REDIR_CONTRACT,
               {
                 deposit_pool: {
                   percentage: percentage,
@@ -190,7 +172,7 @@ const DWContainer = () => {
             ),
           ]
         : [
-            new MsgExecuteContract(user_address, contract, {
+            new MsgExecuteContract(user_address, REDIR_CONTRACT, {
               withdraw_pool: {},
             }),
           ];
@@ -310,9 +292,9 @@ const DWContainer = () => {
         <div className="earn_style">
           <div className="earn_container">
             <div>
-              <h1 style={title}>TOTAL DEPOSIT</h1>
-              <h1 style={ust}>
-                <span style={amt}>
+              <h1 className="title">TOTAL DEPOSIT</h1>
+              <h1 className="ust">
+                <span className="amt">
                   {(
                     toTerraAmount(parseInt(info?.aust_amount ?? 0)) *
                     exchangeRate
