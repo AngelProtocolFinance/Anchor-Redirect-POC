@@ -4,13 +4,13 @@ import useAddress from "hooks/useAddress";
 import { useState } from "react";
 import { useSetState } from "react-use";
 import TxModal from "../Modal/TxModal";
-
-import "../index.css";
 import { REDIR_CONTRACT } from "constants/constants";
 import DWModal from "./DWModal";
 import Percentages from "./Percentages";
 import Profit from "./Profit";
 import Earn from "./Earn";
+
+import "../index.css";
 
 export enum Type {
   DEPOSIT = 0,
