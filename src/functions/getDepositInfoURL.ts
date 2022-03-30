@@ -9,7 +9,6 @@ const getDepositInfoURL = async (lcd: any, contract: string, address: string) =>
                 address
             }
         });
-        console.log(info)
         return info;
     } catch {
         return null;

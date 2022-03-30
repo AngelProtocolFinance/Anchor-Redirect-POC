@@ -23,13 +23,13 @@ const container = {
 const Nav = () => {
 
     return (
-        <nav style={nav}>
-            <div style={container}>
-                <h1>hello</h1>
-                <WalletProvider/>
-            </div>
-        </nav>
-    )
+      <nav style={nav}>
+        <div style={container}>
+          <h1>TEMP LOGO</h1>
+          <WalletProvider />
+        </div>
+      </nav>
+    );
 }
 
 export default Nav;

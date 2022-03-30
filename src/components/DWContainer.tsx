@@ -194,7 +194,7 @@ const DWContainer = () => {
                   percentage: percentage,
                 },
               },
-              [new Coin("uusd", ~~amount)]
+              [new Coin("uusd", Math.floor(amount))]
             ),
           ]
         : [
@@ -423,8 +423,8 @@ const DWContainer = () => {
                 </Grid>
                 <Text fontSize="3rem" fontWeight="700">
                   {(
-                    19.24 -
-                    (19.24 * (+info?.give_percentage || 0)) / 100
+                    19.52 -
+                    (19.52 * (+info?.give_percentage || 0)) / 100
                   ).toFixed(2)}
                   %
                 </Text>
@@ -451,7 +451,7 @@ const DWContainer = () => {
                   </CircularProgress>
                 </Grid>
                 <Text fontSize="3rem" fontWeight="700">
-                  {((19.24 * (+info?.give_percentage || 0)) / 100).toFixed(2)}%
+                  {((19.52 * (+info?.give_percentage || 0)) / 100).toFixed(2)}%
                 </Text>
               </Stack>
             </Stack>
