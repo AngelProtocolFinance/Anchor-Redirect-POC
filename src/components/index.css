@@ -1,3 +1,21 @@
+.dw_container {
+    width: 100%;
+    max-width: 1250px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    gap: 25px;
+}
+
+.earn_style {
+    width: 100%;
+    min-height: 300px;
+    height: auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 25px;
+}
+
 .earn_container {
     padding: 50px;
     width: 100%;

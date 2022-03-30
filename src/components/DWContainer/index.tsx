@@ -1,4 +1,20 @@
-import { Box, Button, CircularProgress, CircularProgressLabel, Grid, Modal, ModalCloseButton, ModalContent, ModalOverlay, Progress, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  CircularProgressLabel,
+  Grid,
+  Modal,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { Coin, MsgExecuteContract } from "@terra-money/terra.js";
 import {
   useLCDClient,
@@ -11,33 +27,9 @@ import getYield from "functions/getYield";
 import useAddress from "hooks/useAddress";
 import { useEffect, useState } from "react";
 import { useSetState } from "react-use";
-import "./index.css";
-import TxModal from "./Modal/TxModal";
+import TxModal from "../Modal/TxModal";
 
-const style = {
-  width: "100%",
-  maxWidth: "1250px",
-  height: "auto",
-  display: "grid",
-  gridTemplateColumns: "4fr 2fr",
-  gap: "25px",
-};
-
-const earn_style = {
-  width: "100%",
-  minHeight: "300px",
-  height: "auto",
-  display: "grid",
-  gridTemplateRows: "1fr 1fr",
-  gap: "25px",
-};
-
-const earn_percentage = {
-  width: "100%",
-  minHeight: "300px",
-  borderRadius: "15px",
-  background: "white",
-};
+import "../index.css";
 
 const title = {
   letterSpacing: "1px",
@@ -115,10 +107,10 @@ const DWContainer = () => {
 
           const promise = [];
 
-          promise.push(getYield(parseInt(blockHeight) + 14400 * 10));
-          promise.push(getYield(+blockHeight + 14400 * 7 * 10));
-          promise.push(getYield(+blockHeight + 14400 * 30 * 10));
-          promise.push(getYield(+blockHeight + 14400 * 365 * 10));
+          promise.push(getYield(parseInt(blockHeight) + 14400));
+          promise.push(getYield(+blockHeight + 14400 * 7));
+          promise.push(getYield(+blockHeight + 14400 * 30));
+          promise.push(getYield(+blockHeight + 14400 * 365));
 
           const [
             {
@@ -314,8 +306,8 @@ const DWContainer = () => {
           </Stack>
         </ModalContent>
       </Modal>
-      <section style={style}>
-        <div style={earn_style}>
+      <section className="dw_container">
+        <div className="earn_style">
           <div className="earn_container">
             <div>
               <h1 style={title}>TOTAL DEPOSIT</h1>
