@@ -1,5 +1,5 @@
 import { WalletStatus } from "@terra-money/wallet-provider";
-import { toTerraAmount } from "functions/toXAmount";
+import { calculateEarn } from "functions/calculateEarn";
 import { Type } from ".";
 
 const Earn = ({ info, openModal, exchangeRate, balance, status }: any) => {
@@ -8,21 +8,12 @@ const Earn = ({ info, openModal, exchangeRate, balance, status }: any) => {
       <div>
         <h1 className="title">TOTAL DEPOSIT</h1>
         <h1 className="ust">
-          <span className="amt">
-            {(
-              toTerraAmount(parseInt(info?.aust_amount ?? 0)) * exchangeRate
-            ).toFixed(2)}
-          </span>{" "}
-          UST
+          <span className="amt">{calculateEarn(info, exchangeRate)}</span> UST
         </h1>
       </div>
       <div className="dw">
         <button
-          disabled={
-            info !== undefined ||
-            status !== WalletStatus.WALLET_CONNECTED ||
-            balance === 0
-          }
+          disabled={status !== WalletStatus.WALLET_CONNECTED || balance === 0}
           onClick={() => openModal(Type.DEPOSIT)}
           className="trigger"
         >

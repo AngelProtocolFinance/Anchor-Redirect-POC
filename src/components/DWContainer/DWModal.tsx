@@ -14,8 +14,10 @@ import {
   CircularProgressLabel,
   Box,
   Button,
+  Input,
 } from "@chakra-ui/react";
-import { toTerraAmount } from "functions/toXAmount";
+import { calculateEarn } from "functions/calculateEarn";
+import { toChainAmount, toTerraAmount } from "functions/toXAmount";
 import { Type } from ".";
 
 const DWModal = ({
@@ -25,7 +27,6 @@ const DWModal = ({
   amount,
   info,
   percentage,
-  balance,
   setAmount,
   setPercentage,
   goBack,
@@ -46,13 +47,7 @@ const DWModal = ({
             <Text fontSize="1rem" fontWeight="500" textTransform="uppercase">
               {type === Type.DEPOSIT ? "Deposit" : "Withdraw"} Amount
               <Text fontSize="2.25rem">
-                {type === Type.DEPOSIT
-                  ? toTerraAmount(amount).toFixed(2)
-                  : (
-                      toTerraAmount(parseInt(info?.aust_amount ?? 0)) *
-                      exchangeRate
-                    ).toFixed(2)}{" "}
-                UST
+                {toTerraAmount(amount).toFixed(2)} UST
               </Text>
             </Text>
             <Stack direction="row" alignItems="center">
@@ -75,26 +70,16 @@ const DWModal = ({
               </Grid>
             </Stack>
           </Stack>
-          {type === Type.DEPOSIT && (
-            <Stack>
-              <Stack direction="row" gap="10px">
-                <Box>Deposit: </Box>
-                <Slider
-                  onChange={(val: number) => setAmount(val)}
-                  className="slider"
-                  aria-label="slider-ex-1"
-                  defaultValue={0}
-                  min={0}
-                  max={balance}
-                  step={0.01}
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack bg="#33CCCC" />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-              </Stack>
+          <Stack>
+            <Stack direction="row" gap="10px">
+              <Box>{type === Type.DEPOSIT ? "Deposit: " : "Withdraw: "}</Box>
+              <Input
+                type="number"
+                onChange={(e: any) => setAmount(toChainAmount(e.target.value))}
+              />
+            </Stack>
 
+            {type === Type.DEPOSIT && (
               <Stack direction="row" gap="10px">
                 <Box>Percentage: </Box>
                 <Slider
@@ -102,7 +87,7 @@ const DWModal = ({
                   className="slider"
                   aria-label="slider-ex-1"
                   defaultValue={0}
-                  min={0}
+                  min={5}
                   max={100}
                   step={1}
                 >
@@ -112,8 +97,8 @@ const DWModal = ({
                   <SliderThumb />
                 </Slider>
               </Stack>
-            </Stack>
-          )}
+            )}
+          </Stack>
           <Stack direction="row" gap="10px" justifyContent="flex-end">
             <Button
               onClick={goBack}

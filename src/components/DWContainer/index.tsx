@@ -11,6 +11,8 @@ import Profit from "./Profit";
 import Earn from "./Earn";
 
 import "../index.css";
+import { calculateEarn } from "functions/calculateEarn";
+import { toChainAmount } from "functions/toXAmount";
 
 export enum Type {
   DEPOSIT = 0,
@@ -24,7 +26,7 @@ const DWContainer = () => {
   const [info, setInfo] = useState<any>();
   const [msgs, setMsgs] = useState<any>([]);
   const [amount, setAmount] = useState<number>(0);
-  const [percentage, setPercentage] = useState<number>(0);
+  const [percentage, setPercentage] = useState<number>(5);
   const [balance, setBalance] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
   const [exchangeRate, setExchangeRate] = useState<number>(1);
@@ -47,7 +49,7 @@ const DWContainer = () => {
   const goBack = () => {
     setOpen(false);
     setAmount(0);
-    setPercentage(0);
+    setPercentage(5);
   };
 
   const doMoney = () => {
@@ -68,7 +70,9 @@ const DWContainer = () => {
           ]
         : [
             new MsgExecuteContract(user_address, REDIR_CONTRACT, {
-              withdraw_pool: {},
+              withdraw_pool: {
+                withdraw_amount: "" + amount,
+              },
             }),
           ];
 
@@ -77,7 +81,7 @@ const DWContainer = () => {
 
   return (
     <>
-      <TxModal msgs={msgs} />
+      <TxModal msgs={msgs} goBack={goBack} />
       <DWModal
         open={open}
         type={type}
@@ -118,3 +122,4 @@ const DWContainer = () => {
 };
 
 export default DWContainer;
+
