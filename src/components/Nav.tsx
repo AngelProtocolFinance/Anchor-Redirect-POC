@@ -12,24 +12,26 @@ const nav = {
 }
 
 const container = {
-    width: '100%',
-    maxWidth: '1250px',
-    height: 'fit-content',
-    display: "flex",
-    FlexDirection: "row",
-    justifyContent: "space-between"
-}
+  width: "100%",
+  maxWidth: "1250px",
+  height: "100%",
+  display: "flex",
+  FlexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  fontSize: "1.5rem",
+  fontWeight: "700",
+};
 
 const Nav = () => {
-
-    return (
-      <nav style={nav}>
-        <div style={container}>
-          <h1>TEMP LOGO</h1>
-          <WalletProvider />
-        </div>
-      </nav>
-    );
-}
+  return (
+    <nav style={nav}>
+      <div style={container}>
+        <h1>ANGELIC YIELD POC</h1>
+        <WalletProvider />
+      </div>
+    </nav>
+  );
+};
 
 export default Nav;

@@ -9,5 +9,5 @@ export const calculateEarn = (info: any, exchangeRate: any) => {
     const diff = aust_amount * exchangeRate - ust_amount;
     const to_angel = diff * percentage / 100;
     const to_user = toTerraAmount(aust_amount * exchangeRate - to_angel);
-    return Math.trunc(to_user * 1000) / 1000;
+    return to_user.toFixed(3);
 };

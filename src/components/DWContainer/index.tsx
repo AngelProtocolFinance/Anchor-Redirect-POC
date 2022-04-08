@@ -77,8 +77,6 @@ const DWContainer = () => {
     setMsgs(msgs);
   };
 
-  useEffect(() => {}, []);
-
   return (
     <>
       <TxModal msgs={msgs} goBack={goBack} />
