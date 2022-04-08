@@ -6,8 +6,19 @@ import {
   CircularProgressLabel,
   Box,
 } from "@chakra-ui/react";
+import getYearlyRate from "functions/getYearlyRate";
+import { useEffect, useState } from "react";
 
 const Percentages = ({ info }: any) => {
+  const [yearlyRate, setYearlyRate] = useState<number>(0);
+
+  useEffect(() => {
+    (async () => {
+      const yearlyRate = await getYearlyRate();
+      setYearlyRate(yearlyRate);
+    })();
+  }, []);
+
   return (
     <div className="percentages">
       <Stack direction="column" gap="25px" width="100%">
@@ -28,9 +39,10 @@ const Percentages = ({ info }: any) => {
               </CircularProgress>
             </Grid>
             <Text fontSize="3rem" fontWeight="700">
-              {(19.52 - (19.52 * (+info?.give_percentage || 0)) / 100).toFixed(
-                2
-              )}
+              {(
+                yearlyRate -
+                (yearlyRate * (+info?.give_percentage || 0)) / 100
+              ).toFixed(2)}
               %
             </Text>
           </Stack>
@@ -52,7 +64,7 @@ const Percentages = ({ info }: any) => {
               </CircularProgress>
             </Grid>
             <Text fontSize="3rem" fontWeight="700">
-              {((19.52 * (+info?.give_percentage || 0)) / 100).toFixed(2)}%
+              {((yearlyRate * (+info?.give_percentage || 0)) / 100).toFixed(2)}%
             </Text>
           </Stack>
         </Stack>

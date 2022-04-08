@@ -39,16 +39,14 @@ const DWModal = ({
       <ModalContent>
         <Stack
           padding="25px"
-          height="300px"
+          height="350px"
           direction="column"
           justifyContent="space-between"
         >
           <Stack direction="row" justifyContent="space-between">
             <Text fontSize="1rem" fontWeight="500" textTransform="uppercase">
               {type === Type.DEPOSIT ? "Deposit" : "Withdraw"} Amount
-              <Text fontSize="2.25rem">
-                {toTerraAmount(amount).toFixed(2)} UST
-              </Text>
+              <Text fontSize="2.25rem">{toTerraAmount(amount)} UST</Text>
             </Text>
             <Stack direction="row" alignItems="center">
               <Text>
@@ -75,8 +73,24 @@ const DWModal = ({
               <Box>{type === Type.DEPOSIT ? "Deposit: " : "Withdraw: "}</Box>
               <Input
                 type="number"
+                value={amount === 0 ? undefined : toTerraAmount(amount)}
                 onChange={(e: any) => setAmount(toChainAmount(e.target.value))}
               />
+            </Stack>
+            <Stack
+              onClick={() =>
+                setAmount(toChainAmount(calculateEarn(info, exchangeRate)))
+              }
+              direction="row"
+              justifyContent="flex-end"
+              cursor="pointer"
+            >
+              <Text fontSize="12.5px" color="gray">
+                MAX:{" "}
+              </Text>
+              <Text fontSize="12.5px" color="gray">
+                {calculateEarn(info, exchangeRate)}
+              </Text>
             </Stack>
 
             {type === Type.DEPOSIT && (
@@ -100,19 +114,13 @@ const DWModal = ({
             )}
           </Stack>
           <Stack direction="row" gap="10px" justifyContent="flex-end">
+            <Button onClick={goBack}>Go Back</Button>
             <Button
-              onClick={goBack}
-              background="transparent"
-              border="2px solid #2d2d2d"
-              color="#2d2d2d"
-            >
-              Go Back
-            </Button>
-            <Button
+              disabled={amount === 0}
               onClick={doMoney}
-              color="white"
+              color="#2d2d2d"
               border="2px solid #2d2d2d"
-              background="#2d2d2d"
+              background="transparent"
             >
               {type === Type.DEPOSIT ? "Deposit" : "Withdraw"}
             </Button>

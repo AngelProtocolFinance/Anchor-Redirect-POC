@@ -3,6 +3,7 @@ import { useLCDClient } from "@terra-money/wallet-provider";
 import axios from "axios";
 import { REDIR_CONTRACT } from "constants/constants";
 import getDepositInfoURL from "functions/getDepositInfoURL";
+import getYearlyRate from "functions/getYearlyRate";
 import getYield from "functions/getYield";
 import { toTerraAmount } from "functions/toXAmount";
 import useAddress from "hooks/useAddress";
@@ -46,36 +47,12 @@ const Profit = ({
           const epochRate = await getYield(+blockHeight);
           setExchangeRate(epochRate.result.exchange_rate);
 
-          const promise = [];
+          const yearlyRate = await getYearlyRate();
 
-          promise.push(getYield(parseInt(blockHeight) + 14400));
-          promise.push(getYield(+blockHeight + 14400 * 7));
-          promise.push(getYield(+blockHeight + 14400 * 30));
-          promise.push(getYield(+blockHeight + 14400 * 365));
-
-          const [
-            {
-              result: { exchange_rate: dayRate },
-            },
-            {
-              result: { exchange_rate: weekRate },
-            },
-            {
-              result: { exchange_rate: monthRate },
-            },
-            {
-              result: { exchange_rate: yearRate },
-            },
-          ] = await Promise.all(promise);
-
-          const pureDayYield =
-            +deposit_info.aust_amount * +dayRate - +deposit_info.ust_amount;
-          const pureWeekYield =
-            +deposit_info.aust_amount * +weekRate - +deposit_info.ust_amount;
-          const pureMonthYield =
-            +deposit_info.aust_amount * +monthRate - +deposit_info.ust_amount;
-          const pureYearYield =
-            +deposit_info.aust_amount * +yearRate - +deposit_info.ust_amount;
+          const pureYearYield = +deposit_info.ust_amount * (yearlyRate / 100);
+          const pureMonthYield = pureYearYield / 12;
+          const pureWeekYield = pureYearYield / 52.1429;
+          const pureDayYield = pureYearYield / 365;
 
           const donDayYield =
             pureDayYield * (+deposit_info.give_percentage / 100);

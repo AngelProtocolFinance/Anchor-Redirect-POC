@@ -1,7 +1,7 @@
 import { Coin, MsgExecuteContract } from "@terra-money/terra.js";
 import { useWallet } from "@terra-money/wallet-provider";
 import useAddress from "hooks/useAddress";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSetState } from "react-use";
 import TxModal from "../Modal/TxModal";
 import { REDIR_CONTRACT } from "constants/constants";
@@ -11,8 +11,6 @@ import Profit from "./Profit";
 import Earn from "./Earn";
 
 import "../index.css";
-import { calculateEarn } from "functions/calculateEarn";
-import { toChainAmount } from "functions/toXAmount";
 
 export enum Type {
   DEPOSIT = 0,
@@ -79,6 +77,8 @@ const DWContainer = () => {
     setMsgs(msgs);
   };
 
+  useEffect(() => {}, []);
+
   return (
     <>
       <TxModal msgs={msgs} goBack={goBack} />
@@ -101,7 +101,6 @@ const DWContainer = () => {
             info={info}
             openModal={openModal}
             exchangeRate={exchangeRate}
-            balance={balance}
             status={status}
           />
           <Profit
