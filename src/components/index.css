@@ -95,10 +95,11 @@
 }
 
 .percentages {
+    height: fit-content;
     background-color: white;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 50px;
     padding: 50px;
 }
