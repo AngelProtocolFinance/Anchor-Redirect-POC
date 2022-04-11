@@ -4,12 +4,13 @@ import {
   Grid,
   CircularProgress,
   CircularProgressLabel,
-  Box,
 } from "@chakra-ui/react";
+import { calculateEarn } from "functions/calculateEarn";
 import getYearlyRate from "functions/getYearlyRate";
+import { toTerraAmount } from "functions/toXAmount";
 import { useEffect, useState } from "react";
 
-const Percentages = ({ info }: any) => {
+const Percentages = ({ info, exchangeRate }: any) => {
   const [yearlyRate, setYearlyRate] = useState<number>(0);
 
   useEffect(() => {
@@ -69,7 +70,17 @@ const Percentages = ({ info }: any) => {
           </Stack>
         </Stack>
       </Stack>
-      <Box width="100%" height="100%" background="lightgrey"></Box>
+      <Stack>
+        <Text>Total Donated</Text>
+        <Text>
+          {info
+            ? toTerraAmount(
+                +info.total_donated + calculateEarn(info, exchangeRate).to_angel
+              ).toFixed(6)
+            : (0).toFixed(6)}{" "}
+          UST
+        </Text>
+      </Stack>
     </div>
   );
 };

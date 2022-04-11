@@ -8,7 +8,10 @@ const Earn = ({ info, openModal, exchangeRate, balance, status }: any) => {
       <div>
         <h1 className="title">TOTAL DEPOSIT</h1>
         <h1 className="ust">
-          <span className="amt">{calculateEarn(info, exchangeRate)}</span> UST
+          <span className="amt">
+            {calculateEarn(info, exchangeRate).to_user}
+          </span>{" "}
+          UST
         </h1>
       </div>
       <div className="dw">

@@ -112,7 +112,7 @@ const DWContainer = () => {
             donate={donate}
           />
         </div>
-        <Percentages info={info} />
+        <Percentages info={info} exchangeRate={exchangeRate} />
       </section>
     </>
   );

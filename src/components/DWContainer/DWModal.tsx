@@ -79,7 +79,9 @@ const DWModal = ({
             </Stack>
             <Stack
               onClick={() =>
-                setAmount(toChainAmount(calculateEarn(info, exchangeRate)))
+                setAmount(
+                  toChainAmount(calculateEarn(info, exchangeRate).to_user)
+                )
               }
               direction="row"
               justifyContent="flex-end"
@@ -89,7 +91,7 @@ const DWModal = ({
                 MAX:{" "}
               </Text>
               <Text fontSize="12.5px" color="gray">
-                {calculateEarn(info, exchangeRate)}
+                {calculateEarn(info, exchangeRate).to_user}
               </Text>
             </Stack>
 
