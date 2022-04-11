@@ -25,7 +25,7 @@ const Percentages = ({ info, exchangeRate }: any) => {
     <div className="percentages">
       <Stack>
         <Text fontSize="0.8rem" fontWeight="700" textTransform="uppercase">
-          Total Donated
+          User Total Donated
         </Text>
         <Text fontSize="2rem" fontWeight="700">
           {info
