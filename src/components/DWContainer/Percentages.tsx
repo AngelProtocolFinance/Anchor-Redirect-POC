@@ -4,6 +4,7 @@ import {
   Grid,
   CircularProgress,
   CircularProgressLabel,
+  Link,
 } from "@chakra-ui/react";
 import { calculateEarn } from "functions/calculateEarn";
 import getYearlyRate from "functions/getYearlyRate";
@@ -30,10 +31,25 @@ const Percentages = ({ info, exchangeRate }: any) => {
           {info
             ? toTerraAmount(
                 +info.total_donated + calculateEarn(info, exchangeRate).to_angel
-              ).toFixed(6)
+              )
+                .toFixed(6)
+                .replace("-", "")
             : (0).toFixed(6)}{" "}
           UST
         </Text>
+      </Stack>
+      <Stack>
+        <Text fontSize="0.8rem" fontWeight="700" textTransform="uppercase">
+          Charity Address
+        </Text>
+        <Link fontSize="1rem" fontWeight="500" textDecoration="underline">
+          <a
+            href="https://finder.terra.money/testnet/address/terra1wn2tukpav24qmue8yjqdc48vkm6u4k626743h7"
+            target="_blank"
+          >
+            terra1wn2tukpav24q...vkm6u4k626743h7
+          </a>
+        </Link>
       </Stack>
       <Stack direction="column" gap="25px" width="100%">
         <Stack direction="column" gap="10px">

@@ -88,16 +88,16 @@ const Profit = ({
         </Text>
         <Stack direction="row" justifyContent="space-between" gap="10px">
           <h1 className="compound">
-            Year: <span>{toTerraAmount(earn.year).toFixed(2)} UST</span>
+            Y: <span>{toTerraAmount(earn.year).toFixed(2)} UST</span>
           </h1>
           <h1 className="compound">
-            Month: <span>{toTerraAmount(earn.month).toFixed(2)} UST</span>
+            M: <span>{toTerraAmount(earn.month).toFixed(2)} UST</span>
           </h1>
           <h1 className="compound">
-            Week: <span>{toTerraAmount(earn.week).toFixed(2)} UST</span>
+            W: <span>{toTerraAmount(earn.week).toFixed(2)} UST</span>
           </h1>
           <h1 className="compound">
-            Day: <span>{toTerraAmount(earn.day).toFixed(2)} UST</span>
+            D: <span>{toTerraAmount(earn.day).toFixed(2)} UST</span>
           </h1>
         </Stack>
       </Stack>
@@ -107,16 +107,16 @@ const Profit = ({
         </Text>
         <Stack direction="row" justifyContent="space-between" gap="10px">
           <h1 className="compound">
-            Year: <span>{toTerraAmount(donate.year).toFixed(2)} UST</span>
+            Y: <span>{toTerraAmount(donate.year).toFixed(2)} UST</span>
           </h1>
           <h1 className="compound">
-            Month: <span>{toTerraAmount(donate.month).toFixed(2)} UST</span>
+            M: <span>{toTerraAmount(donate.month).toFixed(2)} UST</span>
           </h1>
           <h1 className="compound">
-            Week: <span>{toTerraAmount(donate.week).toFixed(2)} UST</span>
+            W: <span>{toTerraAmount(donate.week).toFixed(2)} UST</span>
           </h1>
           <h1 className="compound">
-            Day: <span>{toTerraAmount(donate.day).toFixed(2)} UST</span>
+            D: <span>{toTerraAmount(donate.day).toFixed(2)} UST</span>
           </h1>
         </Stack>
       </Stack>

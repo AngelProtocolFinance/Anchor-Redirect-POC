@@ -102,7 +102,7 @@ const DWModal = ({
                   onChange={(val: number) => setPercentage(val)}
                   className="slider"
                   aria-label="slider-ex-1"
-                  defaultValue={0}
+                  defaultValue={50}
                   min={5}
                   max={100}
                   step={1}

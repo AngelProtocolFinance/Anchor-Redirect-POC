@@ -24,7 +24,7 @@ const DWContainer = () => {
   const [info, setInfo] = useState<any>();
   const [msgs, setMsgs] = useState<any>([]);
   const [amount, setAmount] = useState<number>(0);
-  const [percentage, setPercentage] = useState<number>(5);
+  const [percentage, setPercentage] = useState<number>(50);
   const [balance, setBalance] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
   const [exchangeRate, setExchangeRate] = useState<number>(1);
@@ -47,7 +47,7 @@ const DWContainer = () => {
   const goBack = () => {
     setOpen(false);
     setAmount(0);
-    setPercentage(5);
+    setPercentage(50);
   };
 
   const doMoney = () => {
