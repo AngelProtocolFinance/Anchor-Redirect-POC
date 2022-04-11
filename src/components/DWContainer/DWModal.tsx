@@ -24,6 +24,7 @@ const DWModal = ({
   open,
   type,
   exchangeRate,
+  balance,
   amount,
   info,
   percentage,
@@ -80,7 +81,9 @@ const DWModal = ({
             <Stack
               onClick={() =>
                 setAmount(
-                  toChainAmount(calculateEarn(info, exchangeRate).to_user)
+                  type === Type.DEPOSIT
+                    ? balance
+                    : toChainAmount(calculateEarn(info, exchangeRate).to_user)
                 )
               }
               direction="row"
@@ -91,7 +94,9 @@ const DWModal = ({
                 MAX:{" "}
               </Text>
               <Text fontSize="12.5px" color="gray">
-                {calculateEarn(info, exchangeRate).to_user}
+                {type === Type.DEPOSIT
+                  ? toTerraAmount(balance).toFixed(3)
+                  : calculateEarn(info, exchangeRate).to_user}
               </Text>
             </Stack>
 
