@@ -57,7 +57,7 @@ const TxModal = ({
         : "address"
       : "";
 
-    return `https://finder.terra.money/${network}/${type_of_find}/${params}`;
+    return `https://terrasco.pe/${network}/${type_of_find}/${params}`;
   };
 
   const Dialog = ({ type, title, img }: any) => {

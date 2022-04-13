@@ -44,7 +44,7 @@ const Percentages = ({ info, exchangeRate }: any) => {
         </Text>
         <Link fontSize="1rem" fontWeight="500" textDecoration="underline">
           <a
-            href={`https://finder.terra.money/testnet/address/${
+            href={`https://terrasco.pe/testnet/address/${
               process.env.REACT_APP_CHARITY_ADDRESS as string
             }`}
             target="_blank"
