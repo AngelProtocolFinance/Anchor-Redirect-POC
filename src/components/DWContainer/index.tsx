@@ -1,10 +1,9 @@
 import { Coin, MsgExecuteContract } from "@terra-money/terra.js";
 import { useWallet } from "@terra-money/wallet-provider";
 import useAddress from "hooks/useAddress";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSetState } from "react-use";
 import TxModal from "../Modal/TxModal";
-import { REDIR_CONTRACT } from "constants/constants";
 import DWModal from "./DWModal";
 import Percentages from "./Percentages";
 import Profit from "./Profit";
@@ -57,7 +56,7 @@ const DWContainer = () => {
         ? [
             new MsgExecuteContract(
               user_address,
-              REDIR_CONTRACT,
+              process.env.REACT_APP_REDIR_CONTRACT as string,
               {
                 deposit_pool: {
                   percentage: percentage,
@@ -67,11 +66,15 @@ const DWContainer = () => {
             ),
           ]
         : [
-            new MsgExecuteContract(user_address, REDIR_CONTRACT, {
-              withdraw_pool: {
-                withdraw_amount: "" + amount,
-              },
-            }),
+            new MsgExecuteContract(
+              user_address,
+              process.env.REACT_APP_REDIR_CONTRACT as string,
+              {
+                withdraw_pool: {
+                  withdraw_amount: "" + amount,
+                },
+              }
+            ),
           ];
 
     setMsgs(msgs);

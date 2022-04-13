@@ -1,1 +1,0 @@
-export const REDIR_CONTRACT = "terra1dphyjkxkhem334q3sllpkzaqefqc53jhszgzel";

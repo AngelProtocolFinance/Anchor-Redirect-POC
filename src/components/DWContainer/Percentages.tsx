@@ -44,10 +44,12 @@ const Percentages = ({ info, exchangeRate }: any) => {
         </Text>
         <Link fontSize="1rem" fontWeight="500" textDecoration="underline">
           <a
-            href="https://finder.terra.money/testnet/address/terra1wn2tukpav24qmue8yjqdc48vkm6u4k626743h7"
+            href={`https://finder.terra.money/testnet/address/${
+              process.env.REACT_APP_CHARITY_ADDRESS as string
+            }`}
             target="_blank"
           >
-            terra1wn2tukpav24q...vkm6u4k626743h7
+            {(process.env.REACT_APP_CHARITY_ADDRESS as string).slice(0, 25)}...
           </a>
         </Link>
       </Stack>

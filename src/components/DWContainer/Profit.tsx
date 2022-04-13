@@ -1,7 +1,6 @@
 import { Stack, Text } from "@chakra-ui/react";
 import { useLCDClient } from "@terra-money/wallet-provider";
 import axios from "axios";
-import { REDIR_CONTRACT } from "constants/constants";
 import getDepositInfoURL from "functions/getDepositInfoURL";
 import getYearlyRate from "functions/getYearlyRate";
 import getYield from "functions/getYield";
@@ -26,7 +25,7 @@ const Profit = ({
       (async () => {
         const deposit_info = await getDepositInfoURL(
           lcd,
-          REDIR_CONTRACT,
+          process.env.REACT_APP_REDIR_CONTRACT as string,
           user_address
         );
         const [coins] = await lcd.bank.balance(user_address);
